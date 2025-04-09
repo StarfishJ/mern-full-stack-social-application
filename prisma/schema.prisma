@@ -36,7 +36,7 @@ model User {
 
   createdAt DateTime @default(now())
 
-  @@map("users")
+  @@map("users")  // this is the name of the table in the database
 }
 
 model Session {
@@ -44,6 +44,10 @@ model Session {
   userId    String
   expiresAt DateTime
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // this is the relation between the Session and the User model
+  // it means that the Session model has a foreign key called userId
+  // that references the id field in the User model
+  // and that the Session model will be deleted if the User model is deleted
 
   @@map("sessions")
 }
